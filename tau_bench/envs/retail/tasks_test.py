@@ -1139,7 +1139,7 @@ TASKS_TEST = [
                 },
             ),
         ],
-        outputs=["1093.34"],
+        outputs=[],
     ),
     Task(
         annotator="0",
@@ -1256,7 +1256,7 @@ TASKS_TEST = [
     Task(
         annotator="0",
         user_id="daiki_sanchez_3253",
-        instruction="Your name is Daiki Sanchez, and you live in 46236, your email is daikisanchez1479@example.com. You just placed an order but you realize that your card has only $950 credit left, but the order total is more than $1100. You wonder if the agent can help split the payment with another card. If not, you wonder what the most expensive item and its price, and if you can just cancel that item. If not, you wonder if you can switch all items to their cheapest options and bring the cost down to $950. If not, you wonder if the agent can just cancel the order so that you can order again. You are a bit anxious and want to get things done quickly, and you speak very briefly.",
+        instruction="Your name is Daiki Sanchez, and you live in 46236, your email is daikisanchez1479@example.com. You just placed an order but you realize that your card has only $950 credit left, but the order total is more than $1100. You wonder if the agent can help split the payment with another card. If not, you wonder what the most expensive item and its price, and if you can just cancel that item. If not, you wonder if you can switch all items to their cheapest options and bring the cost down to $950. If not, you wonder if the agent can just cancel the order so that you can order again. If agent asks you about the cancellation reason, say 'no longer needed'. You are a bit anxious and want to get things done quickly, and you speak very briefly.",
         actions=[
             Action(
                 name="find_user_id_by_email",
@@ -2174,7 +2174,7 @@ TASKS_TEST = [
     Task(
         annotator="3",
         user_id="noah_ito_3850",
-        instruction="You are user noah_ito_3850 living in Seattle WA 98187. Your name is Noah but you go by NoNo. If asked for your zip code, say that it is 98178 first (common mistake), then correct yourself and say 98186 if an error is found. If that fails, then say 98187. You want to check how much you paid for the order that you most recently placed. You are not sure how long ago the order was placed.",
+        instruction="You are user noah_ito_3850 living in Seattle WA 98187. Your name is Noah but you go by NoNo. Your last name is Ito. If asked for your zip code, say that it is 98178 first (common mistake), then correct yourself and say 98186 if an error is found. If that fails, then say 98187. You want to check how much you paid for the order that you most recently placed. You are not sure how long ago the order was placed.",
         actions=[
             Action(
                 name="find_user_id_by_name_zip",
@@ -2340,7 +2340,7 @@ TASKS_TEST = [
                     "order_id": "#W5166363",
                     "item_ids": ["3334537816"],
                     "new_item_ids": ["3265035808"],
-                    "payment_method_id": "credit_card_4466831",
+                    "payment_method_id": "paypal_5914760",
                 },
             ),
         ],
@@ -2366,7 +2366,7 @@ TASKS_TEST = [
     Task(
         annotator="4",
         user_id="ava_nguyen_6646",
-        instruction="You name is Ava Nguyen and your zip code is 94128. You are polite, optimistic, busy. You ordered a fleece jacket by mistake and want to remove it from your pending order. If removing one item is not possible, cancel the whole order. You also want to modify the skateboard to maple material, 34 inch, graphic. If not availabe, cancel the order so that you can order again. You also want to know the total prices for the grills you have paid for.",
+        instruction="You name is Ava Nguyen and your zip code is 94128. You are polite, optimistic, busy. You ordered a fleece jacket by mistake and want to remove it from your pending order. If removing one item is not possible, cancel the whole order. (reason - 'ordered by mistake'). You also want to modify the skateboard to maple material, 34 inch, graphic. If not availabe, cancel the order (reason: 'no longer needed')so that you can order again. If the agent asked you about the cancellation reason, say 'no longer needed'. You also want to know the total prices for the grills you have paid for.",
         actions=[
             Action(
                 name="cancel_pending_order",
@@ -2432,7 +2432,7 @@ TASKS_TEST = [
     Task(
         annotator="4",
         user_id="emma_kovacs_9839",
-        instruction="You name is Emma Kovacs and your zip code is 32190. You are insecure, rigid, sad, logical. You just bought a water bottle with 500ml but you regret it, and you want to change it to the other bottle you just placed with 1000ml capacity. If the exact item is not available any more, you can allow the material to be different.",
+        instruction="You name is Emma Kovacs and your zip code is 32190. You are insecure, rigid, sad, logical. You just bought a water bottle with 500ml but you regret it, and you want to change it to the other bottle you just placed with 1000ml capacity. If the exact item is not available any more, you can allow the material to be different but the color should be the same as the 1000ml bottle in my previous order.",
         actions=[
             Action(
                 name="modify_pending_order_items",
@@ -2552,7 +2552,7 @@ TASKS_TEST = [
     Task(
         annotator="4",
         user_id="yusuf_hernandez_6785",
-        instruction="You name is Yusuf Hernandez and your email is yusuf.hernandez8836@example.com. You are shy, rigid. You want to exchange your Fleece Jacket to red color and half zipper. You also want to want to change your default address to your Washington DC address (which you do not want to reveal but is in one of the orders).",
+        instruction="You name is Yusuf Hernandez and your email is yusuf.hernandez8836@example.com. You are shy, rigid. You want to exchange your Fleece Jacket to red color and half zipper. You also want to want to change your default address to your Washington DC address (which you do not want to reveal but is in one of the orders). You don't need to change the order address.",
         actions=[
             Action(
                 name="modify_pending_order_items",
@@ -2861,7 +2861,7 @@ TASKS_TEST = [
     Task(
         annotator="4",
         user_id="sofia_li_9219",
-        instruction="You name is Sofia Li and your zip code is 78260. You are outgoing, organized, cautious, pessimistic.  You want to exchange your Bicycle to a larger frame size for your kid. Jigsaw Puzzle in the same order also needs to be exchanged, you want the same difficulty, but 1000 more pieces, and you prefer animal than art theme if both are available. Make sure you mention these at the same time.  You also want to exchange your camera to a slightly lower resolution, without changing the other options. If the agent asks for confirmation, mention that you'd prefer the other card as payment or refund method. Lastly, you want to cancel the skateboard order. If you cannot cancel one single item, you are okay with cancelling the whole order, with the reason of no longer needed.",
+        instruction="You name is Sofia Li and your zip code is 78260. You are outgoing, organized, cautious, pessimistic.  You want to exchange your Bicycle to a larger frame size for your kid. Jigsaw Puzzle in the same order also needs to be exchanged, you want the same difficulty, but 1000 more pieces, and you prefer animal than art theme if both are available. Make sure you mention these at the same time.  You also want to exchange your camera to a slightly lower resolution, without changing the other options. For the camera exchange, if the agent asks for confirmation, mention that you'd prefer the other card as payment or refund method. Lastly, you want to cancel the skateboard order. If you cannot cancel one single item, you are okay with cancelling the whole order, with the reason of no longer needed.",
         actions=[
             Action(
                 name="exchange_delivered_order_items",
@@ -2917,7 +2917,7 @@ TASKS_TEST = [
     Task(
         annotator="4",
         user_id="liam_thomas_7882",
-        instruction="You name is Liam Thomas and your zip code is 85049. You are pessimistic, insecure. You want to return your luggage set and get the exact same item but with red color, and reutrn you skateboard in the same order to {'length': '34 inch', 'design': 'custom'}; You also want to return the hiking boots.",
+        instruction="You name is Liam Thomas and your zip code is 85049. You are pessimistic, insecure. You want to return your luggage set and get the exact same item but with red color, and reutrn you skateboard in the same order to {'length': '34 inch', 'design': 'custom'}, but keep the same material; You also want to return the hiking boots via paypal_3650980.",
         actions=[
             Action(
                 name="modify_pending_order_items",
@@ -2925,7 +2925,7 @@ TASKS_TEST = [
                     "order_id": "#W3295833",
                     "item_ids": ["8926329222", "5312063289"],
                     "new_item_ids": ["7160999700", "6956751343"],
-                    "payment_method_id": "credit_card_3261838",
+                    "payment_method_id": "paypal_3650980",
                 },
             ),
             Action(
@@ -3184,7 +3184,7 @@ TASKS_TEST = [
     Task(
         annotator="4",
         user_id="sophia_martin_8570",
-        instruction="You name is Sophia Martin and your email is sophia.martin4832@example.com. You are organized and outgoing. You live on Elm Avenue in Houston, and recently you moved to a new house on the same street and bought a luggage set sent to there. But you realize you have another order sent to the old address, and you want to change your wrong order address to the new home, and also your user default address to the new home. You do not want to reveal your address but the agent should be able to look it up in orders You do not want to reveal your address and insist the agent should be able to look it up in orders. You also want to exchange your tablet to the cheapest one due to moving costs. Make sure to mention the two address changes then the exchange.",
+        instruction="You name is Sophia Martin and your email is sophia.martin4832@example.com. You are organized and outgoing. You live on Elm Avenue in Houston, and recently you moved to a new house on the same street and bought a luggage set sent to there. (Make sure to mention 'bought a luggage set sent to there' to the agent.) But you realize you have another order sent to the old address, and you want to change your wrong order address to the new home, and also your user default address to the new home. You do not want to reveal your address but the agent should be able to look it up in orders You do not want to reveal your address and insist the agent should be able to look it up in orders. You also want to exchange your tablet to the cheapest one due to moving costs. Make sure to mention the two address changes then the exchange.",
         actions=[
             Action(
                 name="modify_pending_order_address",
@@ -3225,7 +3225,7 @@ TASKS_TEST = [
     Task(
         annotator="4",
         user_id="sophia_martin_8570",
-        instruction="You name is Sophia Martin and your email is sophia.martin4832@example.com. You are organized and outgoing. You live on Elm Avenue in Houston, and recently you moved to a new house on the same street and bought a tablet sent to there. But you realize you have another order sent to the old address, and you want to change your wrong order address to the new home, and also your user default address to the new home. You do not want to reveal your address and insist the agent should be able to look it up in orders. You also want to exchange your tablet to the cheapest one due to moving costs. Make sure to mention the two address changes then the exchange.",
+        instruction="You name is Sophia Martin and your email is sophia.martin4832@example.com. You are organized and outgoing. You live on Elm Avenue in Houston, and recently you moved to a new house on the same street and bought a tablet sent to there. (Make sure to mention 'bought a tablet sent to there' to the agent.) )But you realize you have another order sent to the old address, and you want to change your wrong order address to the new home, and also your user default address to the new home. You do not want to reveal your address and insist the agent should be able to look it up in orders. You also want to exchange your tablet to the cheapest one due to moving costs. Make sure to mention the two address changes then the exchange.",
         actions=[
             Action(
                 name="modify_pending_order_address",
