@@ -155,7 +155,7 @@ TASKS_TEST = [
     Task(
         annotator="0",
         user_id="mei_kovacs_8020",
-        instruction="You are mei_kovacs_8020 (zip code 28236) and you want to exchange the water bottle and the desk lamp. You want to exchange the water bottle to a bigger one, and the desk lamp to a less bright one (prefer battery > USB > AC). If the agent asks for confirmation, only exchange the desk lamp. If the agent asks for confirmation again, do not exchange anything, and return the water bottle instead.",
+        instruction="You are mei_kovacs_8020 (zip code 28236) and you want to exchange the water bottle and the desk lamp. You want to exchange the water bottle to a bigger one, and the desk lamp to a less bright one (prefer battery > USB > AC). If the agent asks for confirmation, do not exchange anything, and return the water bottle instead.",
         actions=[
             Action(
                 name="find_user_id_by_name_zip",
@@ -345,14 +345,6 @@ TASKS_TEST = [
             Action(name="get_order_details", kwargs={"order_id": "#W5490111"}),
             Action(name="get_order_details", kwargs={"order_id": "#W7387996"}),
             Action(
-                name="return_delivered_order_items",
-                kwargs={
-                    "order_id": "#W5490111",
-                    "item_ids": ["4579334072", "6117189161", "4947717507"],
-                    "payment_method_id": "paypal_9497703",
-                },
-            ),
-            Action(
                 name="transfer_to_human_agents",
                 kwargs={
                     "summary": "The user prefers PayPal for refund, but the agent cannot help."
@@ -533,7 +525,7 @@ TASKS_TEST = [
     Task(
         annotator="0",
         user_id="mei_davis_8935",
-        instruction="You are Mei Davis in 80217. You want to return the office chair because it came with some broken pieces. But if the agent asks you for confirm, you say you want to rethink for a while, and then change your mind to exchange for the same item. You are in debt and sad today, but very brief.",
+        instruction="You are Mei Davis in 80217. You want to return the office chair because it came with some broken pieces. But if the agent asks you for confirm, you say you want to rethink for a while, and then change your mind to exchange for the same item. If it's not possible, then return the item. You are in debt and sad today, but very brief.",
         actions=[
             Action(
                 name="find_user_id_by_name_zip",
@@ -543,11 +535,10 @@ TASKS_TEST = [
             Action(name="get_order_details", kwargs={"order_id": "#W2890441"}),
             Action(name="get_product_details", kwargs={"product_id": "4794339885"}),
             Action(
-                name="exchange_delivered_order_items",
+                name="return_delivered_order_items",
                 kwargs={
                     "order_id": "#W2890441",
                     "item_ids": ["8069050545"],
-                    "new_item_ids": ["8069050545"],
                     "payment_method_id": "credit_card_1061405",
                 },
             ),
@@ -557,7 +548,7 @@ TASKS_TEST = [
     Task(
         annotator="0",
         user_id="mei_davis_8935",
-        instruction="You are Mei Davis in 80217. You want to return the water bottle, and exchange the pet bed and office chair to the cheapest version. Mention the two things together. If you can only do one of the two things, you prefer to do whatever saves you most money, but you want to know the money you can save in both ways. You are in debt and sad today, but very brief.",
+        instruction="You are Mei Davis in 80217. You want to return the water bottle, and exchange BOTH the pet bed and office chair to the cheapest version. Mention the two things together. If you can only exchange 2 items or return 1, you prefer to do whatever saves you most money, but you want to know the money you can save in both ways. You are in debt and sad today, but very brief.",
         actions=[
             Action(
                 name="find_user_id_by_name_zip",
@@ -1280,10 +1271,6 @@ TASKS_TEST = [
             Action(name="get_product_details", kwargs={"product_id": "2524789262"}),
             Action(name="get_product_details", kwargs={"product_id": "9523456873"}),
             Action(
-                name="calculate",
-                kwargs={"expression": "466.75 + 288.82 + 135.24 + 193.38 + 46.66"},
-            ),
-            Action(
                 name="cancel_pending_order",
                 kwargs={"order_id": "#W9348897", "reason": "no longer needed"},
             ),
@@ -1358,7 +1345,7 @@ TASKS_TEST = [
     Task(
         annotator="0",
         user_id="mei_patel_7272",
-        instruction="Your name is Mei Patel, and you live in 445 Maple Drive, Suite 394, Fort Worth, Texas, 76165. You just created your user id mei_patel_7272 and ordered some things, but you have two problems: first, the 1000-piece intermediate jigsaw might be too hard for your little kid, you wonder if you can change it to the easiest one with fewest pieces; second, you might have typed your address wrong. You want to check it, and potentially correct all order addresses and your user address. Make sure you mention these two problems at the same time in the same order. You are brief and your memory is not too good sometimes, but you are polite.",
+        instruction="Your name is Mei Patel, and you live in 445 Maple Drive, Suite 394, Fort Worth, Texas, 76165. You just created your user id mei_patel_7272 and ordered some things, but you have two problems: first, the 1000-piece intermediate jigsaw might be too hard for your little kid, you wonder if you can change it to the easiest one with fewest pieces; (payment option: paypal) second, you might have typed your address wrong. You want to check it, and potentially correct all order addresses and your user address. Make sure you mention these two problems at the same time in the same order. You are brief and your memory is not too good sometimes, but you are polite.",
         actions=[
             Action(
                 name="find_user_id_by_name_zip",
@@ -1739,7 +1726,7 @@ TASKS_TEST = [
     Task(
         annotator="1",
         user_id="sofia_li_9219",
-        instruction="You are Sofia Li, residing in San Antonio, 78260. The digital camera you received doesn't zoom as far as you expected. You use the camera for bird-watching and want to exchange it for a camera that has the maximum zoom capacity. Price is not an issue, but ensure all the other specifications of the camera to be exchanged are the same, except for the zoom capacity which has to be maximized. You want the exchange to be completed as soon as possible. You want to use your PayPal account for any additional payment.",
+        instruction="You are Sofia Li, residing in San Antonio, 78260. The digital camera you received doesn't zoom as far as you expected. You use the camera for bird-watching and want to exchange it for a camera that has the maximum zoom capacity. Price is not an issue, but ensure all the other specifications of the camera to be exchanged are the same, except for the zoom capacity which has to be maximized and for the resolution which can be changed as well. You want the exchange to be completed as soon as possible. You want to use your PayPal account for any additional payment.",
         actions=[
             Action(
                 name="find_user_id_by_name_zip",
@@ -1787,7 +1774,7 @@ TASKS_TEST = [
     Task(
         annotator="0",
         user_id="amelia_silva_7726",
-        instruction="You are Amelia, and you have two emails: silva7872@example.com and amelia.silva7872@example.com. You live in Philadelphia, and you are a loyal customer. But you just faced a fincinal issue and want to cancel or return all possible orders. Well, except the boots that you really really love, but you are happy to exchange it for boots of the exact same size and material to get maximum money back, but only if they are cheaper than what you have paid. You are now emotional and a bit stress out. You like to talk very tersely. At the end of the day, you wonder how much money you can get back today.",
+        instruction="You are Amelia, and you have two emails: silva7872@example.com and amelia.silva7872@example.com. You live in Philadelphia, and you are a loyal customer. But you just faced a fincinal issue and want to cancel or return all possible orders. Well, except the boots that you really really love, but you are happy to exchange it for boots of the exact same size and material to get maximum money back, but only if they are cheaper than what you have paid. You are now emotional and a bit stress out. You like to talk very tersely. You wonder how much money you can get back in total in the end.",
         actions=[
             Action(
                 name="find_user_id_by_email",
@@ -1826,7 +1813,7 @@ TASKS_TEST = [
                 },
             ),
         ],
-        outputs=["3646.68"],
+        outputs=["2460.21"],
     ),
     Task(
         annotator="0",
@@ -1953,7 +1940,7 @@ TASKS_TEST = [
     Task(
         annotator="2",
         user_id="yusuf_taylor_7149",
-        instruction="You are Yusuf Taylor from San Jose, CA, 95154. You recently placed two orders, and now you would like to make several changes and checks. You'll first inquire about the status difference between your two orders, #W2702727 and #W8268610, since both are \"pending,\" but one was placed much earlier in the year. You are considering cancelling the older order as you find the wait time unreasonable. If the agent cannot guarantee the older order will be processed within 5 days, you want to cancel it. You also want to confirm the total price of the refund.\n\nFor order #W2702727, you intend to switch the shipping address to your new home in a different city because you plan to move prior to its delivery next month. Your new address is 1234 Elm St, Springfield, IL, 62701. You want the agent to confirm the change and ensure the order will be delivered to the new address. You also want to confirm the total price of the order after the address change.\n\nYour approach will be firm, as you are unhappy with the pending status's duration but try to make all requests in one go and ask for them to be resolved efficiently and correctly in context with each other.",
+        instruction="You are Yusuf Taylor from San Jose, CA, 95154. You recently placed two orders, and now you would like to make several changes and checks. You'll first inquire about the status difference between your two orders, #W2702727 and #W8268610, since both are \"pending,\" but one was placed much earlier in the year. You are considering cancelling #W8268610 as you find the wait time unreasonable. If the agent cannot guarantee the older order will be processed within 5 days, you want to cancel it. You also want to confirm the total price of the refund.\n\nFor order #W2702727, you intend to switch the shipping address to your new home in a different city because you plan to move prior to its delivery next month. Your new address is 1234 Elm St, Springfield, IL, 62701. You want the agent to confirm the change and ensure the order will be delivered to the new address. You also want to confirm the total price of the order after the address change.\n\nYour approach will be firm, as you are unhappy with the pending status's duration but try to make all requests in one go and ask for them to be resolved efficiently and correctly in context with each other.",
         actions=[
             Action(
                 name="find_user_id_by_name_zip",
@@ -2015,7 +2002,7 @@ TASKS_TEST = [
     Task(
         annotator="2",
         user_id="chen_johnson_4204",
-        instruction="You are Chen Johnson from Houston TX, 77004. You want to change your wireless earbuds in order W5061109 to a blue colored one. Provide all details upfront and ask the agent to resolve as soon as possible. You want the price to be the same or lower.",
+        instruction="You are Chen Johnson from Houston TX, 77004. You want to change your wireless earbuds in order W5061109 to a blue colored one. Provide all details upfront and ask the agent to resolve as soon as possible. You want the price to be the same or lower.  For payment use original method",
         actions=[
             Action(
                 name="find_user_id_by_name_zip",
@@ -2155,7 +2142,7 @@ TASKS_TEST = [
     Task(
         annotator="3",
         user_id="aarav_lee_1982",
-        instruction="You are Aarav Lee. You want to change the luggage set in your order for a coat. You live in Phoenix, AZ 85025. Your goal is to change the order. If there is no way to do that, return the item specifically. If there are any issues, cancel the entire order.",
+        instruction="You are Aarav Lee. You want to change the luggage set in your order for a coat. You live in Phoenix, AZ 85025. Your goal is to change the order. If there is no way to do that, return the item specifically. If there are any issues, cancel the entire order. The reason should be 'no longer needed'.",
         actions=[
             Action(
                 name="find_user_id_by_name_zip",
@@ -2328,7 +2315,7 @@ TASKS_TEST = [
     Task(
         annotator="4",
         user_id="lei_li_6575",
-        instruction="You name is Lei Li and your zip code is 85033. You are insecure, shy. You recently bought a laptop, but you want to exchange it to i9 CPU. If multiple storage options are available, you prefer 256GB SSD. If multiple colors are available, you prefer silver. You also have a pending order with five items (you don't remember order ID), and you want to cancel it because you no longer need them.",
+        instruction="You name is Lei Li and your zip code is 85033. You are insecure, shy. You recently bought a laptop, but you want to exchange it to i9 CPU. If multiple storage options are available, you prefer 256GB SSD. If multiple colors are available, you prefer silver. You also have a pending order with five items (you don't remember order ID), and you want to cancel it because you no longer need them. For payment method use paypal",
         actions=[
             Action(
                 name="cancel_pending_order",
@@ -2688,11 +2675,10 @@ TASKS_TEST = [
                 },
             ),
             Action(
-                name="exchange_delivered_order_items",
+                name="return_delivered_order_items",
                 kwargs={
                     "order_id": "#W3239882",
                     "item_ids": ["9494281769"],
-                    "new_item_ids": ["9494281769"],
                     "payment_method_id": "credit_card_5902940",
                 },
             ),
@@ -3102,6 +3088,14 @@ TASKS_TEST = [
                     "payment_method_id": "credit_card_2112420",
                 },
             ),
+            Action(
+                name="return_delivered_order_items",
+                kwargs={
+                    "order_id": "#W6239298",
+                    "item_ids": ["3614853563"],
+                    "payment_method_id": "credit_card_2112420",
+                },
+            ),
         ],
         outputs=["286422338955"],
     ),
@@ -3114,8 +3108,8 @@ TASKS_TEST = [
                 name="exchange_delivered_order_items",
                 kwargs={
                     "order_id": "#W4316152",
-                    "item_ids": ["7292993796", "7292993796"],
-                    "new_item_ids": ["3761330360", "9647374798"],
+                    "item_ids": ["7292993796"],
+                    "new_item_ids": ["9647374798"],
                     "payment_method_id": "gift_card_7245904",
                 },
             )
@@ -3149,7 +3143,6 @@ TASKS_TEST = [
                 kwargs={
                     "order_id": "#W1304208",
                     "item_ids": ["1615379700"],
-                    "new_item_ids": ["1615379700"],
                     "payment_method_id": "paypal_1679017",
                 },
             ),
