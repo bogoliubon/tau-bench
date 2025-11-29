@@ -1813,7 +1813,7 @@ TASKS_TEST = [
                 },
             ),
         ],
-        outputs=["2460.21"],
+        outputs=["3646.68"],
     ),
     Task(
         annotator="0",
@@ -3102,7 +3102,7 @@ TASKS_TEST = [
     Task(
         annotator="4",
         user_id="aarav_anderson_8794",
-        instruction="You name is Aarav Anderson and your zip code is 19031. You are cautious, messy, rigid. For #W4316152, exchange Tea Kettle {'material': 'glass', 'capacity': '2 liters', 'stovetop compatibility': 'induction'} to {'material': 'ceramic', 'stovetop compatibility': 'gas'}; Tea Kettle {'material': 'glass', 'capacity': '2 liters', 'stovetop compatibility': 'induction'} to {'capacity': '1.5 liters', 'stovetop compatibility': 'gas'}; ",
+        instruction="You name is Aarav Anderson and your zip code is 19031. You are cautious, messy, rigid. For #W4316152, exchange Tea Kettle {'material': 'glass', 'capacity': '2 liters', 'stovetop compatibility': 'induction'} to {'material': 'ceramic', 'stovetop compatibility': 'gas'}; Tea Kettle {'material': 'glass', 'capacity': '2 liters', 'stovetop compatibility': 'induction'} to {'capacity': '1.5 liters', 'stovetop compatibility': 'gas'}; If that fails, just exchange the more expensive one.",
         actions=[
             Action(
                 name="exchange_delivered_order_items",
@@ -3136,10 +3136,10 @@ TASKS_TEST = [
     Task(
         annotator="4",
         user_id="yara_ito_8499",
-        instruction="You name is Yara Ito and your zip code is 75284. You are happy, messy. Your received hiking boots but seem like already worn, you are unhappy about it and want to send for a new pair with the same specs. You also want to exchange your jigsaw to a more fancy theme, with 500 pieces less. But you want to keep the same difficulty level.",
+        instruction="You name is Yara Ito and your zip code is 75284. You are happy, messy. Your received hiking boots but seem like already worn, you are unhappy about it and want to send for a new pair with the same specs. You also want to exchange your jigsaw to a more fancy theme, with 500 pieces less. But you want to keep the same difficulty level. If the exchange is not possible, return the item.",
         actions=[
             Action(
-                name="exchange_delivered_order_items",
+                name="return_delivered_order_items",
                 kwargs={
                     "order_id": "#W1304208",
                     "item_ids": ["1615379700"],
