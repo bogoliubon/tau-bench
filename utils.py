@@ -4,6 +4,8 @@ import json
 import argparse
 import os
 import sys
+import textwrap
+from typing import Optional, List, Dict
 
 ANSI = {
     "reset": "\033[0m",
@@ -212,8 +214,6 @@ def filter_tasks_by_tool(
     Args:
         file_path: Path to results.json
         tool_name: Tool name to filter by (e.g., "exchange_delivered_order_items")
-        exact_match: If True, only return tasks where ground truth contains ONLY this tool.
-                     If False, return tasks where ground truth contains this tool (may have others).
     
     Returns:
         List of task_ids that match the filter criteria
@@ -419,64 +419,100 @@ def extract_conversation_text(
     
     return "\n".join(lines)
 
-def _build_argparser():
-    p = argparse.ArgumentParser(description="Print colorized conversation from LLM trajectories JSON.")
-    p.add_argument("--file", "-f", required=True, help="Path to the JSON result file.")
-    p.add_argument("--task-id", "-t", type=int, required=True, help="Task ID to select.")
-    p.add_argument("--trial", "-r", type=int, required=True, help="Trial index to select.")
-    p.add_argument("--width", "-w", type=int, default=100, help="Soft-wrap width (<=0 to disable).")
-    p.add_argument("--no-color", action="store_true", help="Disable ANSI color output.")
-    return p
 
-def main():
-    ap = _build_argparser()
-    args = ap.parse_args()
-    use_color = _supports_color(force_color=not args.no_color)
-    print_conversation(args.file, args.task_id, args.trial, width=args.width, color=use_color)
-
-def filter_by_tool_call(file_paths, tool_name):
-    """Filter the results file by successful tool call.
-    Input:
-    - file_path: list(str), list of paths to the JSON results file
-    - tool_name: str, name of the tool to filter by
-    
-    Output:
-    - write to tool_filtered_{original_filename}.json
+def filter_tasks_by_single_critical_tool(
+    file_path: str,
+    target_tool: str,
+    critical_tools: Optional[List[str]] = None,
+) -> List[int]:
     """
-    filtered_data = []
-    for file_path in file_paths:
-        if not os.path.exists(file_path):
-            print(f"File not found: {file_path}")
-            continue
-
-        try:
-            with open(file_path, "r", encoding="utf-8") as f:
-                data = json.load(f)
-        except Exception as e:
-            print(f"Failed to parse JSON: {e}")
-            continue
-
-        
-        for entry in data:
-            if entry.get("reward") == 0.0:
-                continue
-            traj = entry.get("traj", [])
-            for turn in traj:
-                if turn.get("role") == "assistant":
-                    tool_calls = turn.get("tool_calls") or []
-                    for tc in tool_calls:
-                        func = (tc or {}).get("function") or {}
-                        fname = func.get("name", "")
-                        if fname == tool_name:
-                            filtered_data.append(entry)
-                            break
-
-        # output_file = f"{tool_name}_{os.path.basename(file_path)}"
-    output_file = f"{tool_name}.json"
-    with open(output_file, "w", encoding="utf-8") as f:
-        json.dump(filtered_data, f, ensure_ascii=False, indent=2)
-    print(f"Filtered data written to {output_file}")
+    Filter tasks that involve ONLY the target tool/flow from the critical tool list.
     
+    Tasks can use other non-critical tools (like get_order_details), but cannot
+    use multiple critical tools together.
+    
+    Special handling for "modify" - groups all modify_pending_order_* tools together.
+    
+    Args:
+        file_path: Path to results.json
+        target_tool: The critical tool/flow to filter for. 
+                     Use 'modify' to match any modify_pending_order_* tool.
+                     Examples: 'exchange_delivered_order_items', 'modify'
+        critical_tools: List of critical tools. If None, uses default list.
+    
+    Returns:
+        List of task_ids where ground truth contains target_tool and no other critical tools
+    """
+    if critical_tools is None:
+        # Default critical tools list
+        critical_tools = [
+            "exchange_delivered_order_items",
+            "return_delivered_order_items",
+            "cancel_pending_order",
+            "modify_pending_order_address",
+            "modify_pending_order_items",
+            "modify_pending_order_payment",
+        ]
+    
+    # Define modify tools
+    modify_tools = [
+        "modify_pending_order_address",
+        "modify_pending_order_items",
+        "modify_pending_order_payment",
+    ]
+    
+    if not os.path.exists(file_path):
+        print(f"[error] File not found: {file_path}")
+        return []
+    
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except Exception as e:
+        print(f"[error] Failed to parse JSON: {e}")
+        return []
+    
+    if not isinstance(data, list):
+        print("[error] Expected a list at JSON top level.")
+        return []
+    
+    matching_task_ids = []
+    
+    for entry in data:
+        if not isinstance(entry, dict):
+            continue
+        
+        task_id = entry.get("task_id")
+        if task_id is None:
+            continue
+        
+        # Extract ground truth tools
+        try:
+            gt_tools = entry["info"]["task"]["actions"]
+        except (KeyError, TypeError):
+            continue
+        
+        if not isinstance(gt_tools, list):
+            continue
+        
+        # Check which critical tools are present
+        critical_tools_present = [tool['name'] for tool in gt_tools if tool['name'] in critical_tools]
+        
+        # Special handling for "modify" target
+        if target_tool == "modify":
+            # Check if task contains ONLY modify tools (and no other critical tools)
+            has_modify = any(tool in modify_tools for tool in critical_tools_present)
+            has_non_modify_critical = any(tool not in modify_tools for tool in critical_tools_present)
+            
+            if has_modify and not has_non_modify_critical:
+                if task_id not in matching_task_ids:
+                    matching_task_ids.append(task_id)
+        else:
+            # Standard case: task must contain ONLY the target tool
+            if critical_tools_present == [target_tool]:
+                if task_id not in matching_task_ids:
+                    matching_task_ids.append(task_id)
+    
+    return sorted(matching_task_ids)
 
-if __name__ == "__main__":
-    main()
+
