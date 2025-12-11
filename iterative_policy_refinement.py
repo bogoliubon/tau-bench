@@ -17,21 +17,18 @@ def tool_name_to_description(tool_name: str) -> str:
 
 def call_llm(
     prompt: str,
-    model: str = "claude",
-    model_name: Optional[str] = None
-) -> str:
+    model_name: str = "gpt-4o") -> str:
     """
     Call LLM API to generate response.
     
     Args:
         prompt: The prompt to send
-        model: Model family ("claude", "gpt", "llama")
         model_name: Specific model name (e.g., "claude-sonnet-4-5-20250929")
     
     Returns:
         Generated text response
     """
-    if model == "claude":
+    if model_name.startswith("claude"):
         client = anthropic.Anthropic()
         model_name = model_name or "claude-sonnet-4-5-20250929"
         
@@ -41,8 +38,8 @@ def call_llm(
             messages=[{"role": "user", "content": prompt}]
         )
         return message.content[0].text
-    
-    elif model == "gpt":
+
+    elif model_name.startswith("gpt"):
         client = openai.OpenAI()
         model_name = model_name or "gpt-4o"
         
@@ -51,21 +48,20 @@ def call_llm(
             messages=[{"role": "user", "content": prompt}]
         )
         return response.choices[0].message.content
-    
-    elif model == "llama":
+
+    elif model_name.startswith("llama"):
         # TODO: Add llama implementation (via together.ai, replicate, or local)
         raise NotImplementedError("Llama support coming soon")
     
     else:
-        raise ValueError(f"Unknown model: {model}")
+        raise ValueError(f"Unknown model: {model_name}")
 
 
 def iterative_policy_refinement(
     results_path: str,
     n_traj: int,
     tool_name: Optional[str] = None,
-    model: str = "claude",
-    model_name: Optional[str] = None,
+    model_name: str = "gpt-4o",
     output_path: Optional[str] = None,
     seed: Optional[int] = None,
     success_only: bool = True,
@@ -77,7 +73,6 @@ def iterative_policy_refinement(
         results_path: Path to results.json with trajectories
         n_traj: Number of trajectories to use for refinement
         tool_name: Tool name to filter by (None for all tools)
-        model: Model family to use ("claude", "gpt", "llama")
         model_name: Specific model name
         output_path: Path to save output JSON (if None, auto-generate)
         seed: Random seed for trajectory selection
@@ -123,7 +118,6 @@ def iterative_policy_refinement(
         "config": {
             "tool_name": tool_name,
             "n_traj": n_traj,
-            "model": model,
             "model_name": model_name,
             "results_path": results_path,
             "seed": seed,
@@ -259,8 +253,8 @@ If an update IS needed, provide the COMPLETE updated policy (do not just describ
                 )
         
         # Call LLM
-        print(f"Calling {model}...")
-        response = call_llm(prompt, model, model_name)
+        print(f"Calling {model_name}...")
+        response = call_llm(prompt, model_name)
         
         # Check if update was made
         # import pdb; pdb.set_trace()
@@ -283,8 +277,9 @@ If an update IS needed, provide the COMPLETE updated policy (do not just describ
     # Save results
     if output_path is None:
         tool_str = tool_name if tool_name else "all_tools"
-        output_path = f"policy_refinement_{tool_str}_{n_traj}traj_{model}.json"
+        output_path = f"policy_refinement_{tool_str}_{n_traj}traj_{model_name}.json"
     
+    import pdb; pdb.set_trace()
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(refinement_history, f, indent=2)
     
@@ -349,7 +344,6 @@ def main():
         results_path=args.results_path,
         n_traj=args.n_traj,
         tool_name=args.tool_name,
-        model=args.model,
         model_name=args.model_name,
         output_path=args.output_path,
         seed=args.seed,
