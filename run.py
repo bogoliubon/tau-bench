@@ -69,6 +69,12 @@ def parse_args() -> RunConfig:
     parser.add_argument("--shuffle", type=int, default=0)
     parser.add_argument("--user-strategy", type=str, default="llm", choices=[item.value for item in UserStrategy])
     parser.add_argument("--few-shot-displays-path", type=str, help="Path to a jsonlines file containing few shot displays")
+    parser.add_argument("--wiki-path", type=str, help="Path to refinement results to load wiki from")
+
+    # get wiki from multiple results files
+    parser.add_argument("--concatenate-from-model", type=str, help="Concatenate wiki from all results files matching this model name", default=None)
+    parser.add_argument("--summarize-from-model", type=str, help="Summarize wiki from all results files matching this model name", default=None)
+    
     args = parser.parse_args()
     print(args)
     return RunConfig(
@@ -90,6 +96,9 @@ def parse_args() -> RunConfig:
         shuffle=args.shuffle,
         user_strategy=args.user_strategy,
         few_shot_displays_path=args.few_shot_displays_path,
+        wikipath=args.wiki_path,
+        concatenate_from_model=args.concatenate_from_model,
+        summarize_from_model=args.summarize_from_model,
     )
 
 
