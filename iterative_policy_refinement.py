@@ -3,58 +3,14 @@ import os
 import argparse
 import random
 from typing import Optional, List, Dict
-# import anthropic
-import openai
 
 # Import utility functions
-from utils import filter_tasks_by_tool, extract_conversation_text
+from utils import filter_tasks_by_tool, extract_conversation_text, call_llm
 
 
 def tool_name_to_description(tool_name: str) -> str:
     """Convert tool name to human-readable description."""
     return tool_name.replace("_", " ")
-
-
-def call_llm(
-    prompt: str,
-    model_name: str = "gpt-4o") -> str:
-    """
-    Call LLM API to generate response.
-    
-    Args:
-        prompt: The prompt to send
-        model_name: Specific model name (e.g., "claude-sonnet-4-5-20250929")
-    
-    Returns:
-        Generated text response
-    """
-    if model_name.startswith("claude"):
-        client = anthropic.Anthropic()
-        model_name = model_name or "claude-sonnet-4-5-20250929"
-        
-        message = client.messages.create(
-            model=model_name,
-            max_tokens=4096,
-            messages=[{"role": "user", "content": prompt}]
-        )
-        return message.content[0].text
-
-    elif model_name.startswith("gpt"):
-        client = openai.OpenAI()
-        model_name = model_name or "gpt-4o"
-        
-        response = client.chat.completions.create(
-            model=model_name,
-            messages=[{"role": "user", "content": prompt}]
-        )
-        return response.choices[0].message.content
-
-    elif model_name.startswith("llama"):
-        # TODO: Add llama implementation (via together.ai, replicate, or local)
-        raise NotImplementedError("Llama support coming soon")
-    
-    else:
-        raise ValueError(f"Unknown model: {model_name}")
 
 
 def iterative_policy_refinement(
@@ -88,10 +44,10 @@ def iterative_policy_refinement(
     # Filter tasks (always success_only=True)
     print(f"Filtering tasks (tool={tool_name}, success_only=True)...")
     # for non-modify tools, we just filter by tool_name
-    if tool_name != "modify":
+    if tool_name is not None and tool_name != "modify":
         task_ids_by_tool, task_ids_by_tool_success = filter_tasks_by_tool(results_path, tool_name)
         task_ids = task_ids_by_tool_success if success_only else task_ids_by_tool
-    else:
+    elif tool_name is not None:
         modify_task_ids = []
         modify_task_ids_success = []
         # for modify, we take all modify tasks
@@ -102,7 +58,16 @@ def iterative_policy_refinement(
             t_ids, t_ids_success = filter_tasks_by_tool(results_path, task)
             modify_task_ids.extend(t_ids)
             modify_task_ids_success.extend(t_ids_success)
-        task_ids = list(set(modify_task_ids_success)) if success_only else list(set(modify_task_ids))   
+        task_ids = list(set(modify_task_ids_success)) if success_only else list(set(modify_task_ids))
+
+    elif tool_name is None and success_only:
+        # use all successful tasks
+        with open(results_path, "r") as f:
+            data = json.load(f)
+        task_ids = [result["task_id"] for result in data if result["reward"] > 0.0]  
+
+    else:
+        raise NotImplementedError("Only success_only=True is supported currently")
             
     if len(task_ids) < n_traj:
         print(f"[warning] Only {len(task_ids)} tasks available, requested {n_traj}")
@@ -168,7 +133,7 @@ No
 If an update IS needed, provide the COMPLETE updated policy (do not just describe the changes, provide the full policy text)."""
 
     # Prompts for general extraction (all flows)
-    INITIAL_PROMPT_GENERAL = """You are analyzing successful customer service agent conversations to extract the agent's policy.
+    INITIAL_PROMPT_GENERAL = """You are analyzing successful customer service agent conversations to extract the agent's policy for handling different workflows.
 
 Here is a conversation between an agent and a user:
 
@@ -279,7 +244,6 @@ If an update IS needed, provide the COMPLETE updated policy (do not just describ
         tool_str = tool_name if tool_name else "all_tools"
         output_path = f"policy_refinement_{tool_str}_{n_traj}traj_{model_name}.json"
     
-    import pdb; pdb.set_trace()
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(refinement_history, f, indent=2)
     
