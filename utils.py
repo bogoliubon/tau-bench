@@ -7,6 +7,8 @@ import sys
 import textwrap
 from typing import Optional, List, Dict
 
+import openai
+
 ANSI = {
     "reset": "\033[0m",
     "dim": "\033[2m",
@@ -515,4 +517,142 @@ def filter_tasks_by_single_critical_tool(
     
     return sorted(matching_task_ids)
 
+def call_llm(
+    prompt: str,
+    model_name: str = "gpt-4o") -> str:
+    """
+    Call LLM API to generate response.
+    
+    Args:
+        prompt: The prompt to send
+        model_name: Specific model name (e.g., "claude-sonnet-4-5-20250929")
+    
+    Returns:
+        Generated text response
+    """
+    if model_name.startswith("claude"):
+        client = anthropic.Anthropic()
+        model_name = model_name or "claude-sonnet-4-5-20250929"
+        
+        message = client.messages.create(
+            model=model_name,
+            max_tokens=4096,
+            messages=[{"role": "user", "content": prompt}]
+        )
+        return message.content[0].text
 
+    elif model_name.startswith("gpt"):
+        client = openai.OpenAI()
+        model_name = model_name or "gpt-4o"
+        
+        response = client.chat.completions.create(
+            model=model_name,
+            messages=[{"role": "user", "content": prompt}]
+        )
+        return response.choices[0].message.content
+
+    elif model_name.startswith("llama"):
+        # TODO: Add llama implementation (via together.ai, replicate, or local)
+        raise NotImplementedError("Llama support coming soon")
+    
+    else:
+        raise ValueError(f"Unknown model: {model_name}")
+
+def calculate_acc_on_tasks(
+    file_path: str,
+    task_ids: List[int],
+) -> float:
+    """
+    Calculate accuracy over specified task IDs.
+    
+    Args:
+        file_path: Path to results.json
+        task_ids: List of task IDs to calculate accuracy on
+    
+    Returns:
+        Accuracy as a float (0.0 to 1.0)
+    """
+    if not os.path.exists(file_path):
+        print(f"[error] File not found: {file_path}")
+        return 0.0
+    
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except Exception as e:
+        print(f"[error] Failed to parse JSON: {e}")
+        return 0.0
+    
+    if not isinstance(data, list):
+        print("[error] Expected a list at JSON top level.")
+        return 0.0
+    
+    id_set = set(task_ids)
+    total = 0
+    correct = 0
+    
+    for entry in data:
+        if not isinstance(entry, dict):
+            continue
+        
+        task_id = entry.get("task_id")
+        if task_id is None or task_id not in id_set:
+            continue
+        
+        total += 1
+        if entry.get("reward", 0.0) > 0.0:
+            correct += 1
+    
+    if total == 0:
+        return 0.0
+    
+    return correct / total
+
+
+def summarize_wiki(
+    wikis: List[str],
+    model_name: Optional[str] = None,
+) -> str:
+    """
+    Merge multiple flow-specific policies into one unified policy.
+    
+    Args:
+        wikis: List of policy strings to merge
+        model: Model family to use ("claude", "gpt", "llama")
+        model_name: Specific model name
+    
+    Returns:
+        Merged policy string
+    """
+    if len(wikis) == 0:
+        return ""
+    
+    if len(wikis) == 1:
+        return wikis[0]
+    
+    # Build the merge prompt
+    policies_text = ""
+    for i, wiki in enumerate(wikis, 1):
+        policies_text += f"=== Wiki {i} ===\n{wiki}\n\n"
+    
+    MERGE_PROMPT = f"""You are given multiple agent policies, each focused on a specific customer service workflow (e.g., exchanges, returns, cancellations, modifications).
+
+Your task is to combine these into ONE document while preserving ALL workflow-specific details.
+
+{policies_text}
+
+Please organize these policies into a single document that:
+1. Preserves ALL specific rules, constraints, and details for each workflow type
+2. Removes only redundant information that appears across multiple policies (e.g., general communication guidelines)
+3. Uses clear section headers to separate different workflow types
+4. Maintains the same level of detail and specificity as the original policies
+
+CRITICAL: Do NOT generalize or simplify the workflow-specific rules. Every detail about how to handle exchanges, returns, cancellations, and modifications must be preserved exactly.
+
+Provide the complete organized policy document."""
+    
+    # Call LLM
+    print(f"Merging {len(wikis)} policies using 'gpt-5...")
+    merged_policy = call_llm(MERGE_PROMPT, "gpt-5")
+    
+    return merged_policy
