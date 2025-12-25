@@ -39,11 +39,65 @@ def run(config: RunConfig) -> List[EnvRunResult]:
         user_provider=config.user_model_provider,
         task_split=config.task_split,
     )
-    agent = agent_factory(
-        tools_info=env.tools_info,
-        wiki=env.wiki,
-        config=config,
-    )
+
+    # get wiki from the refinement results
+    if config.wikipath:
+        with open(config.wikipath, "r") as f:
+            data = json.load(f)
+            wiki = data["iterations"][-1]['policy']
+        agent = agent_factory(
+            tools_info=env.tools_info,
+            wiki=wiki,
+            config=config,
+        )
+
+    elif config.concatenate_from_model:
+        wiki_folder = "/home/cw862/tau-bench/iterative_policy_refinement"
+        # get the filename from a folder matching the model name
+        wiki_files = [f for f in os.listdir(wiki_folder) if config.concatenate_from_model in f]
+        if not wiki_files:
+            raise ValueError(f"No wiki files found for model: {config.concatenate_from_model}")
+        # concatenate the wikis from all files
+        wiki = ""
+        for wiki_file in wiki_files:
+            with open(os.path.join(wiki_folder, wiki_file), "r") as f:
+                data = json.load(f)
+                wiki += data["iterations"][-1]['policy']
+        agent = agent_factory(
+            tools_info=env.tools_info,
+            wiki=wiki,
+            config=config,
+        )
+
+    elif config.summarize_from_model:
+        # import pdb; pdb.set_trace()
+        wiki_folder = "/home/cw862/tau-bench/iterative_policy_refinement"
+        # get the filename from a folder matching the model name
+        wiki_files = [f for f in os.listdir(wiki_folder) if config.summarize_from_model in f]
+        if not wiki_files:
+            raise ValueError(f"No wiki files found for model: {config.summarize_from_model}")
+        # concatenate the wikis from all files
+        combined_wiki = []
+        for wiki_file in wiki_files:
+            with open(os.path.join(wiki_folder, wiki_file), "r") as f:
+                data = json.load(f)
+                combined_wiki.append(data["iterations"][-1]['policy'])
+        # summarize the combined wiki
+        from utils import summarize_wiki
+        # import pdb; pdb.set_trace()
+        summarized_wiki = summarize_wiki(combined_wiki)
+        agent = agent_factory(
+            tools_info=env.tools_info,
+            wiki=summarized_wiki,
+            config=config,
+        )
+
+    else:
+        agent = agent_factory(
+            tools_info=env.tools_info,
+            wiki=env.wiki,
+            config=config,
+        )
     end_index = (
         len(env.tasks) if config.end_index == -1 else min(config.end_index, len(env.tasks))
     )
