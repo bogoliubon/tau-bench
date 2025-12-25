@@ -22,6 +22,7 @@ def batch_policy_refinement(
     seed: Optional[int] = None,
     success_only: bool = True,
     batch_size: int = 5,
+    n_shuffle: int = 1,
 ) -> Dict:
     """
     Extract and refine agent policy using batches of trajectories.
@@ -38,6 +39,7 @@ def batch_policy_refinement(
         seed: Random seed for trajectory selection
         success_only: If True, only use successful trajectories
         batch_size: Number of trajectories to process in each batch
+        n_shuffle: Number of times to shuffle the same batch 
     
     Returns:
         Dictionary with refinement history
@@ -187,83 +189,89 @@ If an update IS needed, provide the COMPLETE updated policy (do not just describ
         batch_num = batch_idx + 1
         
         print(f"\n[Batch {batch_num}/{num_batches}] Processing {len(batch_task_ids)} trajectories...")
+
+        # Shuffle the task IDs if needed
+        if n_shuffle > 1:
+            print(f"Shuffling task IDs {n_shuffle} times...")
+            for _ in range(n_shuffle):
+                random.shuffle(batch_task_ids)
+
+                # Extract all trajectories in this batch
+                trajectories_text = ""
+                for idx, task_id in enumerate(batch_task_ids, 1):
+                    trial = 0
+                    trajectory = extract_conversation_text(
+                        results_path, 
+                        task_id, 
+                        trial,
+                        include_instruction=False
+                    )
+                    
+                    if not trajectory:
+                        print(f"[warning] Could not extract trajectory for task_id={task_id}")
+                        continue
+                    
+                    trajectories_text += f"=== Conversation {idx} (task_id={task_id}) ===\n{trajectory}\n\n"
+                
+                # Build prompt based on whether this is first batch or update
+                if tool_name is not None:
+                    flow_desc = tool_name_to_description(tool_name)
+                    if batch_idx == 0:
+                        prompt = INITIAL_BATCH_PROMPT_FLOW_SPECIFIC.format(
+                            num_traj=len(batch_task_ids),
+                            trajectories=trajectories_text,
+                            flow_description=flow_desc,
+                            tool_name=tool_name
+                        )
+                    else:
+                        prompt = UPDATE_BATCH_PROMPT_FLOW_SPECIFIC.format(
+                            current_policy=current_policy,
+                            num_traj=len(batch_task_ids),
+                            trajectories=trajectories_text,
+                            flow_description=flow_desc,
+                            tool_name=tool_name
+                        )
+                else:
+                    # General extraction (all flows)
+                    if batch_idx == 0:
+                        prompt = INITIAL_BATCH_PROMPT_GENERAL.format(
+                            num_traj=len(batch_task_ids),
+                            trajectories=trajectories_text
+                        )
+                    else:
+                        prompt = UPDATE_BATCH_PROMPT_GENERAL.format(
+                            current_policy=current_policy,
+                            num_traj=len(batch_task_ids),
+                            trajectories=trajectories_text
+                        )
+                
+                # Call LLM
+                print(f"Calling {model_name}...")
+                response = call_llm(prompt, model_name)
         
-        # Extract all trajectories in this batch
-        trajectories_text = ""
-        for idx, task_id in enumerate(batch_task_ids, 1):
-            trial = 0
-            trajectory = extract_conversation_text(
-                results_path, 
-                task_id, 
-                trial,
-                include_instruction=False
-            )
-            
-            if not trajectory:
-                print(f"[warning] Could not extract trajectory for task_id={task_id}")
-                continue
-            
-            trajectories_text += f"=== Conversation {idx} (task_id={task_id}) ===\n{trajectory}\n\n"
+                # Check if update was made (for non-initial batches)
+                if batch_idx > 0 and response.strip() == "No":
+                    print(f"No update needed - policy remains unchanged")
+                    updated = False
+                else:
+                    print(f"Policy extracted/updated (length: {len(response)} chars)")
+                    current_policy = response
+                    updated = True
+                
+                # Record batch
+                refinement_history["iterations"].append({
+                    "batch_num": batch_num,
+                    "task_ids": batch_task_ids,
+                    "updated": updated,
+                    "policy": current_policy
+                })
         
-        # Build prompt based on whether this is first batch or update
-        if tool_name is not None:
-            flow_desc = tool_name_to_description(tool_name)
-            if batch_idx == 0:
-                prompt = INITIAL_BATCH_PROMPT_FLOW_SPECIFIC.format(
-                    num_traj=len(batch_task_ids),
-                    trajectories=trajectories_text,
-                    flow_description=flow_desc,
-                    tool_name=tool_name
-                )
-            else:
-                prompt = UPDATE_BATCH_PROMPT_FLOW_SPECIFIC.format(
-                    current_policy=current_policy,
-                    num_traj=len(batch_task_ids),
-                    trajectories=trajectories_text,
-                    flow_description=flow_desc,
-                    tool_name=tool_name
-                )
-        else:
-            # General extraction (all flows)
-            if batch_idx == 0:
-                prompt = INITIAL_BATCH_PROMPT_GENERAL.format(
-                    num_traj=len(batch_task_ids),
-                    trajectories=trajectories_text
-                )
-            else:
-                prompt = UPDATE_BATCH_PROMPT_GENERAL.format(
-                    current_policy=current_policy,
-                    num_traj=len(batch_task_ids),
-                    trajectories=trajectories_text
-                )
-        
-        # Call LLM
-        print(f"Calling {model_name}...")
-        response = call_llm(prompt, model_name)
-        
-        # Check if update was made (for non-initial batches)
-        if batch_idx > 0 and response.strip() == "No":
-            print(f"No update needed - policy remains unchanged")
-            updated = False
-        else:
-            print(f"Policy extracted/updated (length: {len(response)} chars)")
-            current_policy = response
-            updated = True
-        
-        # Record batch
-        refinement_history["iterations"].append({
-            "batch_num": batch_num,
-            "task_ids": batch_task_ids,
-            "updated": updated,
-            "policy": current_policy
-        })
-    
     refinement_history["final_policy"] = current_policy
     
     # Save results
     if output_path is None:
         tool_str = tool_name if tool_name else "all_tools"
-        output_path = f"policy_refinement_{tool_str}_{n_traj}traj_batch{batch_size}_{model_name}.json"
+        output_path = f"policy_refinement_{tool_str}_{n_traj}traj_batch{batch_size}nshuffle_{n_shuffle}_{model_name}.json"
     
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(refinement_history, f, indent=2)
@@ -320,6 +328,13 @@ def main():
         default=5,
         help="Number of trajectories to process in each batch"
     )
+
+    parser.add_argument(
+        "--n_shuffle",
+        type=int,
+        default=1,
+        help="Number of times to shuffle the same batch"
+    )
     
     args = parser.parse_args()
     
@@ -333,6 +348,7 @@ def main():
         seed=args.seed,
         success_only=True,
         batch_size=args.batch_size,
+        n_shuffle=args.n_shuffle,
     )
 
 
