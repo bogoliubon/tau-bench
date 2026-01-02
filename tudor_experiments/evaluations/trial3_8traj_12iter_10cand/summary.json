@@ -1,0 +1,173 @@
+{
+  "config": {
+    "prompt_path": "learned_policies/8traj_12iter_10cand/rpe_ega_result_trial3_8traj_12iter_10cand.json",
+    "test_path": "data/tool-calling-gpt-4o-0.0_range_0--1_user-gpt-4o-llm_1118113344.json",
+    "n_runs": 3,
+    "model": "gpt-4o",
+    "n_tasks": 115,
+    "n_candidates": 10
+  },
+  "results": [
+    {
+      "candidate_index": 0,
+      "candidate_id": 33000,
+      "generation": 10,
+      "train_score": 0.9337681386111553,
+      "lcb_score": 0.8597935300524912,
+      "run_scores": [
+        0.6260869565217392,
+        0.6086956521739131,
+        0.5826086956521739
+      ],
+      "avg_score": 0.6057971014492755,
+      "min_score": 0.5826086956521739,
+      "max_score": 0.6260869565217392,
+      "folder": "evaluations/trial3_8traj_12iter_10cand/cand0_id33000"
+    },
+    {
+      "candidate_index": 1,
+      "candidate_id": 44000,
+      "generation": 11,
+      "train_score": 0.9232851194221257,
+      "lcb_score": 0.8409274287832957,
+      "run_scores": [
+        0.6173913043478261,
+        0.6173913043478261,
+        0.6347826086956522
+      ],
+      "avg_score": 0.6231884057971014,
+      "min_score": 0.6173913043478261,
+      "max_score": 0.6347826086956522,
+      "folder": "evaluations/trial3_8traj_12iter_10cand/cand1_id44000"
+    },
+    {
+      "candidate_index": 2,
+      "candidate_id": 45000,
+      "generation": 12,
+      "train_score": 0.925358082330805,
+      "lcb_score": 0.8404424048955115,
+      "run_scores": [
+        0.5217391304347826,
+        0.6347826086956522,
+        0.6260869565217392
+      ],
+      "avg_score": 0.5942028985507246,
+      "min_score": 0.5217391304347826,
+      "max_score": 0.6347826086956522,
+      "folder": "evaluations/trial3_8traj_12iter_10cand/cand2_id45000"
+    },
+    {
+      "candidate_index": 3,
+      "candidate_id": 19000,
+      "generation": 9,
+      "train_score": 0.8991808836286407,
+      "lcb_score": 0.8339784277854195,
+      "run_scores": [
+        0.5391304347826087,
+        0.5826086956521739,
+        0.6173913043478261
+      ],
+      "avg_score": 0.5797101449275363,
+      "min_score": 0.5391304347826087,
+      "max_score": 0.6173913043478261,
+      "folder": "evaluations/trial3_8traj_12iter_10cand/cand3_id19000"
+    },
+    {
+      "candidate_index": 4,
+      "candidate_id": 30005,
+      "generation": 8,
+      "train_score": 0.9018597846826355,
+      "lcb_score": 0.8336654467362656,
+      "run_scores": [
+        0.5478260869565217,
+        0.6260869565217392,
+        0.5739130434782609
+      ],
+      "avg_score": 0.582608695652174,
+      "min_score": 0.5478260869565217,
+      "max_score": 0.6260869565217392,
+      "folder": "evaluations/trial3_8traj_12iter_10cand/cand4_id30005"
+    },
+    {
+      "candidate_index": 5,
+      "candidate_id": 23000,
+      "generation": 8,
+      "train_score": 0.886174211349084,
+      "lcb_score": 0.8210148645854093,
+      "run_scores": [
+        0.5304347826086957,
+        0.5478260869565217,
+        0.6
+      ],
+      "avg_score": 0.5594202898550725,
+      "min_score": 0.5304347826086957,
+      "max_score": 0.6,
+      "folder": "evaluations/trial3_8traj_12iter_10cand/cand5_id23000"
+    },
+    {
+      "candidate_index": 6,
+      "candidate_id": 42005,
+      "generation": 12,
+      "train_score": 0.8983189453835396,
+      "lcb_score": 0.819661093510752,
+      "run_scores": [
+        0.591304347826087,
+        0.5391304347826087,
+        0.6
+      ],
+      "avg_score": 0.5768115942028985,
+      "min_score": 0.5391304347826087,
+      "max_score": 0.6,
+      "folder": "evaluations/trial3_8traj_12iter_10cand/cand6_id42005"
+    },
+    {
+      "candidate_index": 7,
+      "candidate_id": 29000,
+      "generation": 10,
+      "train_score": 0.8903425839030112,
+      "lcb_score": 0.8185438796144271,
+      "run_scores": [
+        0.5391304347826087,
+        0.5739130434782609,
+        0.5391304347826087
+      ],
+      "avg_score": 0.5507246376811594,
+      "min_score": 0.5391304347826087,
+      "max_score": 0.5739130434782609,
+      "folder": "evaluations/trial3_8traj_12iter_10cand/cand7_id29000"
+    },
+    {
+      "candidate_index": 8,
+      "candidate_id": 10005,
+      "generation": 6,
+      "train_score": 0.8681434599156118,
+      "lcb_score": 0.809938189172387,
+      "run_scores": [
+        0.5478260869565217,
+        0.5565217391304348,
+        0.5826086956521739
+      ],
+      "avg_score": 0.5623188405797102,
+      "min_score": 0.5478260869565217,
+      "max_score": 0.5826086956521739,
+      "folder": "evaluations/trial3_8traj_12iter_10cand/cand8_id10005"
+    },
+    {
+      "candidate_index": 9,
+      "candidate_id": 32000,
+      "generation": 9,
+      "train_score": 0.879540982277168,
+      "lcb_score": 0.8095646490097498,
+      "run_scores": [
+        0.6434782608695652,
+        0.5391304347826087,
+        0.5652173913043478
+      ],
+      "avg_score": 0.5826086956521739,
+      "min_score": 0.5391304347826087,
+      "max_score": 0.6434782608695652,
+      "folder": "evaluations/trial3_8traj_12iter_10cand/cand9_id32000"
+    }
+  ],
+  "timestamp": "2026-01-01T01:41:12.208809"
+}

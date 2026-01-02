@@ -1,0 +1,1950 @@
+{
+  "source": {
+    "type": "rpe_output",
+    "path": "learned_policies/rpe_ega_result_20251231_035332.json",
+    "candidate_index": 0,
+    "candidate_id": 6002,
+    "train_score": 0.9166666666666667
+  },
+  "config": {
+    "test_path": "results/tool-calling-gpt-4o-0.0_range_0--1_user-gpt-4o-llm_1118113344.json",
+    "task_ids": null,
+    "model": "gpt-4o",
+    "seed": 42
+  },
+  "results": {
+    "n_tasks": 115,
+    "n_successes": 65,
+    "success_rate": 0.5652173913043478,
+    "mean_reward": 0.5652173913043478
+  },
+  "task_results": [
+    {
+      "task_id": 0,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_product_details",
+        "get_product_details",
+        "exchange_delivered_order_items"
+      ],
+      "n_messages": 32,
+      "error": null
+    },
+    {
+      "task_id": 1,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "get_product_details",
+        "exchange_delivered_order_items"
+      ],
+      "n_messages": 36,
+      "error": null
+    },
+    {
+      "task_id": 2,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "list_all_product_types",
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "return_delivered_order_items"
+      ],
+      "n_messages": 30,
+      "error": null
+    },
+    {
+      "task_id": 3,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "list_all_product_types",
+        "get_product_details",
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "modify_pending_order_items"
+      ],
+      "n_messages": 34,
+      "error": null
+    },
+    {
+      "task_id": 4,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "list_all_product_types",
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_product_details",
+        "modify_pending_order_items",
+        "modify_pending_order_items"
+      ],
+      "n_messages": 32,
+      "error": null
+    },
+    {
+      "task_id": 5,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "get_product_details",
+        "return_delivered_order_items"
+      ],
+      "n_messages": 26,
+      "error": null
+    },
+    {
+      "task_id": 6,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "get_product_details",
+        "exchange_delivered_order_items"
+      ],
+      "n_messages": 28,
+      "error": null
+    },
+    {
+      "task_id": 7,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "exchange_delivered_order_items"
+      ],
+      "n_messages": 24,
+      "error": null
+    },
+    {
+      "task_id": 8,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "get_product_details",
+        "exchange_delivered_order_items"
+      ],
+      "n_messages": 30,
+      "error": null
+    },
+    {
+      "task_id": 9,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_product_details",
+        "exchange_delivered_order_items"
+      ],
+      "n_messages": 26,
+      "error": null
+    },
+    {
+      "task_id": 10,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_email",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "return_delivered_order_items",
+        "return_delivered_order_items",
+        "return_delivered_order_items",
+        "transfer_to_human_agents"
+      ],
+      "n_messages": 32,
+      "error": null
+    },
+    {
+      "task_id": 11,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_email",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "return_delivered_order_items",
+        "return_delivered_order_items",
+        "return_delivered_order_items"
+      ],
+      "n_messages": 28,
+      "error": null
+    },
+    {
+      "task_id": 12,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_email",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "return_delivered_order_items",
+        "transfer_to_human_agents"
+      ],
+      "n_messages": 22,
+      "error": null
+    },
+    {
+      "task_id": 13,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_email",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "return_delivered_order_items",
+        "return_delivered_order_items"
+      ],
+      "n_messages": 28,
+      "error": null
+    },
+    {
+      "task_id": 14,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_email",
+        "get_user_details",
+        "get_order_details",
+        "return_delivered_order_items"
+      ],
+      "n_messages": 28,
+      "error": null
+    },
+    {
+      "task_id": 15,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_product_details",
+        "modify_pending_order_items"
+      ],
+      "n_messages": 22,
+      "error": null
+    },
+    {
+      "task_id": 16,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "cancel_pending_order",
+        "cancel_pending_order",
+        "return_delivered_order_items",
+        "return_delivered_order_items"
+      ],
+      "n_messages": 30,
+      "error": null
+    },
+    {
+      "task_id": 17,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "modify_pending_order_address"
+      ],
+      "n_messages": 22,
+      "error": null
+    },
+    {
+      "task_id": 18,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "exchange_delivered_order_items"
+      ],
+      "n_messages": 20,
+      "error": null
+    },
+    {
+      "task_id": 19,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "get_product_details",
+        "get_product_details",
+        "think",
+        "calculate",
+        "calculate",
+        "return_delivered_order_items",
+        "exchange_delivered_order_items",
+        "transfer_to_human_agents"
+      ],
+      "n_messages": 34,
+      "error": null
+    },
+    {
+      "task_id": 20,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "get_product_details",
+        "get_product_details",
+        "get_product_details",
+        "get_product_details",
+        "get_product_details",
+        "get_product_details",
+        "get_product_details",
+        "get_product_details",
+        "get_product_details",
+        "modify_pending_order_items",
+        "modify_pending_order_items",
+        "exchange_delivered_order_items",
+        "exchange_delivered_order_items"
+      ],
+      "n_messages": 54,
+      "error": null
+    },
+    {
+      "task_id": 21,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "modify_pending_order_items"
+      ],
+      "n_messages": 26,
+      "error": null
+    },
+    {
+      "task_id": 22,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "modify_user_address",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "modify_pending_order_address",
+        "modify_user_address"
+      ],
+      "n_messages": 28,
+      "error": null
+    },
+    {
+      "task_id": 23,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_product_details",
+        "exchange_delivered_order_items",
+        "get_product_details",
+        "exchange_delivered_order_items",
+        "modify_pending_order_items"
+      ],
+      "n_messages": 46,
+      "error": null
+    },
+    {
+      "task_id": 24,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_email",
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details"
+      ],
+      "n_messages": 24,
+      "error": null
+    },
+    {
+      "task_id": 25,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "transfer_to_human_agents"
+      ],
+      "n_messages": 22,
+      "error": null
+    },
+    {
+      "task_id": 26,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "return_delivered_order_items"
+      ],
+      "n_messages": 24,
+      "error": null
+    },
+    {
+      "task_id": 27,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "exchange_delivered_order_items",
+        "return_delivered_order_items",
+        "think",
+        "get_order_details"
+      ],
+      "n_messages": 32,
+      "error": null
+    },
+    {
+      "task_id": 28,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "return_delivered_order_items",
+        "return_delivered_order_items",
+        "return_delivered_order_items",
+        "get_order_details",
+        "cancel_pending_order",
+        "think",
+        "calculate"
+      ],
+      "n_messages": 42,
+      "error": null
+    },
+    {
+      "task_id": 29,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "exchange_delivered_order_items",
+        "get_order_details",
+        "get_product_details",
+        "exchange_delivered_order_items"
+      ],
+      "n_messages": 38,
+      "error": null
+    },
+    {
+      "task_id": 30,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "exchange_delivered_order_items",
+        "get_product_details",
+        "return_delivered_order_items",
+        "cancel_pending_order",
+        "get_order_details",
+        "get_order_details",
+        "return_delivered_order_items"
+      ],
+      "n_messages": 46,
+      "error": null
+    },
+    {
+      "task_id": 31,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "cancel_pending_order",
+        "get_order_details",
+        "get_order_details",
+        "return_delivered_order_items"
+      ],
+      "n_messages": 34,
+      "error": null
+    },
+    {
+      "task_id": 32,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "cancel_pending_order",
+        "think",
+        "get_order_details",
+        "cancel_pending_order",
+        "get_order_details",
+        "return_delivered_order_items"
+      ],
+      "n_messages": 44,
+      "error": null
+    },
+    {
+      "task_id": 33,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "return_delivered_order_items",
+        "cancel_pending_order"
+      ],
+      "n_messages": 22,
+      "error": null
+    },
+    {
+      "task_id": 34,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "think",
+        "calculate",
+        "cancel_pending_order"
+      ],
+      "n_messages": 22,
+      "error": null
+    },
+    {
+      "task_id": 35,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_email",
+        "find_user_id_by_name_zip",
+        "find_user_id_by_email",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "return_delivered_order_items",
+        "get_product_details",
+        "modify_pending_order_items"
+      ],
+      "n_messages": 36,
+      "error": null
+    },
+    {
+      "task_id": 36,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_email",
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "get_product_details",
+        "get_product_details",
+        "get_product_details",
+        "get_product_details",
+        "think",
+        "calculate",
+        "modify_pending_order_items",
+        "modify_pending_order_items"
+      ],
+      "n_messages": 42,
+      "error": null
+    },
+    {
+      "task_id": 37,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_email",
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_product_details",
+        "get_product_details",
+        "get_product_details",
+        "get_product_details",
+        "get_product_details",
+        "think",
+        "calculate",
+        "modify_pending_order_items",
+        "calculate",
+        "modify_pending_order_items",
+        "calculate",
+        "modify_pending_order_items"
+      ],
+      "n_messages": 46,
+      "error": null
+    },
+    {
+      "task_id": 38,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_email",
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "cancel_pending_order"
+      ],
+      "n_messages": 22,
+      "error": null
+    },
+    {
+      "task_id": 39,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_email",
+        "find_user_id_by_name_zip",
+        "list_all_product_types",
+        "get_product_details"
+      ],
+      "n_messages": 24,
+      "error": null
+    },
+    {
+      "task_id": 40,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_email",
+        "get_user_details",
+        "get_order_details",
+        "modify_pending_order_payment"
+      ],
+      "n_messages": 20,
+      "error": null
+    },
+    {
+      "task_id": 41,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "modify_pending_order_address",
+        "list_all_product_types",
+        "get_product_details",
+        "modify_pending_order_items"
+      ],
+      "n_messages": 30,
+      "error": null
+    },
+    {
+      "task_id": 42,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "modify_user_address",
+        "get_order_details",
+        "get_order_details",
+        "modify_pending_order_address",
+        "modify_pending_order_address",
+        "list_all_product_types",
+        "get_product_details",
+        "modify_pending_order_items"
+      ],
+      "n_messages": 38,
+      "error": null
+    },
+    {
+      "task_id": 43,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "modify_user_address"
+      ],
+      "n_messages": 24,
+      "error": null
+    },
+    {
+      "task_id": 44,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "modify_pending_order_items"
+      ],
+      "n_messages": 28,
+      "error": null
+    },
+    {
+      "task_id": 45,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "exchange_delivered_order_items",
+        "modify_pending_order_payment"
+      ],
+      "n_messages": 22,
+      "error": null
+    },
+    {
+      "task_id": 46,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "calculate",
+        "return_delivered_order_items",
+        "calculate"
+      ],
+      "n_messages": 28,
+      "error": null
+    },
+    {
+      "task_id": 47,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "return_delivered_order_items"
+      ],
+      "n_messages": 26,
+      "error": null
+    },
+    {
+      "task_id": 48,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "return_delivered_order_items"
+      ],
+      "n_messages": 24,
+      "error": null
+    },
+    {
+      "task_id": 49,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "exchange_delivered_order_items"
+      ],
+      "n_messages": 26,
+      "error": null
+    },
+    {
+      "task_id": 50,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "transfer_to_human_agents"
+      ],
+      "n_messages": 8,
+      "error": null
+    },
+    {
+      "task_id": 51,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "return_delivered_order_items"
+      ],
+      "n_messages": 20,
+      "error": null
+    },
+    {
+      "task_id": 52,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "exchange_delivered_order_items"
+      ],
+      "n_messages": 24,
+      "error": null
+    },
+    {
+      "task_id": 53,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "think",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "return_delivered_order_items"
+      ],
+      "n_messages": 26,
+      "error": null
+    },
+    {
+      "task_id": 54,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_email",
+        "find_user_id_by_email",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "return_delivered_order_items",
+        "cancel_pending_order",
+        "cancel_pending_order",
+        "list_all_product_types",
+        "get_product_details",
+        "exchange_delivered_order_items",
+        "think",
+        "calculate"
+      ],
+      "n_messages": 48,
+      "error": null
+    },
+    {
+      "task_id": 55,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_email",
+        "find_user_id_by_name_zip",
+        "find_user_id_by_email",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "cancel_pending_order"
+      ],
+      "n_messages": 32,
+      "error": null
+    },
+    {
+      "task_id": 56,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details"
+      ],
+      "n_messages": 20,
+      "error": null
+    },
+    {
+      "task_id": 57,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "modify_pending_order_items",
+        "cancel_pending_order"
+      ],
+      "n_messages": 24,
+      "error": null
+    },
+    {
+      "task_id": 58,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_product_details",
+        "exchange_delivered_order_items",
+        "get_product_details",
+        "exchange_delivered_order_items",
+        "think",
+        "transfer_to_human_agents"
+      ],
+      "n_messages": 32,
+      "error": null
+    },
+    {
+      "task_id": 59,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_order_details",
+        "get_order_details",
+        "cancel_pending_order",
+        "modify_pending_order_address"
+      ],
+      "n_messages": 24,
+      "error": null
+    },
+    {
+      "task_id": 60,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_product_details",
+        "modify_pending_order_items"
+      ],
+      "n_messages": 26,
+      "error": null
+    },
+    {
+      "task_id": 61,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "modify_pending_order_items"
+      ],
+      "n_messages": 26,
+      "error": null
+    },
+    {
+      "task_id": 62,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_product_details",
+        "cancel_pending_order",
+        "think",
+        "modify_pending_order_items"
+      ],
+      "n_messages": 32,
+      "error": null
+    },
+    {
+      "task_id": 63,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "cancel_pending_order",
+        "list_all_product_types",
+        "get_product_details",
+        "modify_pending_order_items",
+        "calculate"
+      ],
+      "n_messages": 34,
+      "error": null
+    },
+    {
+      "task_id": 64,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "modify_pending_order_items"
+      ],
+      "n_messages": 24,
+      "error": null
+    },
+    {
+      "task_id": 65,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "exchange_delivered_order_items"
+      ],
+      "n_messages": 26,
+      "error": null
+    },
+    {
+      "task_id": 66,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "modify_pending_order_items",
+        "think",
+        "cancel_pending_order"
+      ],
+      "n_messages": 34,
+      "error": null
+    },
+    {
+      "task_id": 67,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "find_user_id_by_name_zip",
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details"
+      ],
+      "n_messages": 20,
+      "error": null
+    },
+    {
+      "task_id": 68,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details"
+      ],
+      "n_messages": 16,
+      "error": null
+    },
+    {
+      "task_id": 69,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "cancel_pending_order"
+      ],
+      "n_messages": 24,
+      "error": null
+    },
+    {
+      "task_id": 70,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "exchange_delivered_order_items"
+      ],
+      "n_messages": 26,
+      "error": null
+    },
+    {
+      "task_id": 71,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "modify_pending_order_items"
+      ],
+      "n_messages": 28,
+      "error": null
+    },
+    {
+      "task_id": 72,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "modify_pending_order_items",
+        "modify_pending_order_address",
+        "transfer_to_human_agents"
+      ],
+      "n_messages": 30,
+      "error": null
+    },
+    {
+      "task_id": 73,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_email",
+        "get_user_details",
+        "get_order_details",
+        "return_delivered_order_items"
+      ],
+      "n_messages": 18,
+      "error": null
+    },
+    {
+      "task_id": 74,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "cancel_pending_order"
+      ],
+      "n_messages": 26,
+      "error": null
+    },
+    {
+      "task_id": 75,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_email",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_product_details",
+        "exchange_delivered_order_items"
+      ],
+      "n_messages": 24,
+      "error": null
+    },
+    {
+      "task_id": 76,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "modify_pending_order_items",
+        "think",
+        "cancel_pending_order",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "cancel_pending_order",
+        "think",
+        "calculate"
+      ],
+      "n_messages": 50,
+      "error": null
+    },
+    {
+      "task_id": 77,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_product_details",
+        "exchange_delivered_order_items"
+      ],
+      "n_messages": 22,
+      "error": null
+    },
+    {
+      "task_id": 78,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_email",
+        "get_order_details",
+        "get_order_details",
+        "modify_pending_order_address",
+        "get_product_details",
+        "exchange_delivered_order_items",
+        "modify_pending_order_items",
+        "get_order_details",
+        "cancel_pending_order"
+      ],
+      "n_messages": 44,
+      "error": null
+    },
+    {
+      "task_id": 79,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_product_details",
+        "modify_pending_order_items"
+      ],
+      "n_messages": 22,
+      "error": null
+    },
+    {
+      "task_id": 80,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_email",
+        "get_user_details",
+        "get_order_details",
+        "get_product_details",
+        "exchange_delivered_order_items"
+      ],
+      "n_messages": 22,
+      "error": null
+    },
+    {
+      "task_id": 81,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_email",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "cancel_pending_order"
+      ],
+      "n_messages": 28,
+      "error": null
+    },
+    {
+      "task_id": 82,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "return_delivered_order_items"
+      ],
+      "n_messages": 20,
+      "error": null
+    },
+    {
+      "task_id": 83,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "return_delivered_order_items"
+      ],
+      "n_messages": 20,
+      "error": null
+    },
+    {
+      "task_id": 84,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "return_delivered_order_items"
+      ],
+      "n_messages": 28,
+      "error": null
+    },
+    {
+      "task_id": 85,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_email",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_product_details",
+        "modify_pending_order_items"
+      ],
+      "n_messages": 24,
+      "error": null
+    },
+    {
+      "task_id": 86,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_email",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "exchange_delivered_order_items",
+        "modify_user_address"
+      ],
+      "n_messages": 36,
+      "error": null
+    },
+    {
+      "task_id": 87,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_email",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "modify_pending_order_address",
+        "modify_pending_order_address",
+        "modify_pending_order_address",
+        "modify_user_address"
+      ],
+      "n_messages": 36,
+      "error": null
+    },
+    {
+      "task_id": 88,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_email",
+        "get_user_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "cancel_pending_order"
+      ],
+      "n_messages": 24,
+      "error": null
+    },
+    {
+      "task_id": 89,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "list_all_product_types",
+        "get_product_details",
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "return_delivered_order_items"
+      ],
+      "n_messages": 26,
+      "error": null
+    },
+    {
+      "task_id": 90,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_email",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "cancel_pending_order"
+      ],
+      "n_messages": 30,
+      "error": null
+    },
+    {
+      "task_id": 91,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_product_details",
+        "exchange_delivered_order_items",
+        "return_delivered_order_items"
+      ],
+      "n_messages": 28,
+      "error": null
+    },
+    {
+      "task_id": 92,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "return_delivered_order_items",
+        "return_delivered_order_items"
+      ],
+      "n_messages": 24,
+      "error": null
+    },
+    {
+      "task_id": 93,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "exchange_delivered_order_items"
+      ],
+      "n_messages": 22,
+      "error": null
+    },
+    {
+      "task_id": 94,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "exchange_delivered_order_items"
+      ],
+      "n_messages": 26,
+      "error": null
+    },
+    {
+      "task_id": 95,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_product_details",
+        "exchange_delivered_order_items"
+      ],
+      "n_messages": 24,
+      "error": null
+    },
+    {
+      "task_id": 96,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_product_details",
+        "calculate",
+        "exchange_delivered_order_items",
+        "exchange_delivered_order_items"
+      ],
+      "n_messages": 28,
+      "error": null
+    },
+    {
+      "task_id": 97,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "modify_pending_order_address",
+        "list_all_product_types",
+        "get_product_details",
+        "exchange_delivered_order_items"
+      ],
+      "n_messages": 32,
+      "error": null
+    },
+    {
+      "task_id": 98,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "modify_pending_order_address",
+        "exchange_delivered_order_items",
+        "modify_pending_order_items"
+      ],
+      "n_messages": 30,
+      "error": null
+    },
+    {
+      "task_id": 99,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "exchange_delivered_order_items",
+        "get_order_details",
+        "get_order_details",
+        "get_product_details",
+        "exchange_delivered_order_items",
+        "get_order_details",
+        "cancel_pending_order"
+      ],
+      "n_messages": 52,
+      "error": null
+    },
+    {
+      "task_id": 100,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "exchange_delivered_order_items",
+        "get_product_details",
+        "exchange_delivered_order_items",
+        "get_product_details",
+        "exchange_delivered_order_items",
+        "cancel_pending_order"
+      ],
+      "n_messages": 48,
+      "error": null
+    },
+    {
+      "task_id": 101,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "modify_pending_order_items",
+        "return_delivered_order_items"
+      ],
+      "n_messages": 36,
+      "error": null
+    },
+    {
+      "task_id": 102,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_product_details",
+        "modify_pending_order_items",
+        "get_order_details",
+        "modify_pending_order_address",
+        "get_order_details",
+        "modify_pending_order_address",
+        "transfer_to_human_agents"
+      ],
+      "n_messages": 36,
+      "error": null
+    },
+    {
+      "task_id": 103,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "modify_pending_order_address",
+        "list_all_product_types",
+        "get_product_details",
+        "modify_pending_order_items",
+        "get_order_details",
+        "modify_pending_order_items",
+        "get_order_details",
+        "get_product_details",
+        "get_product_details",
+        "exchange_delivered_order_items"
+      ],
+      "n_messages": 50,
+      "error": null
+    },
+    {
+      "task_id": 104,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_email",
+        "get_user_details",
+        "get_order_details",
+        "return_delivered_order_items",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "return_delivered_order_items",
+        "get_order_details",
+        "modify_pending_order_address",
+        "list_all_product_types",
+        "get_product_details",
+        "modify_pending_order_items"
+      ],
+      "n_messages": 48,
+      "error": null
+    },
+    {
+      "task_id": 105,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_email",
+        "get_user_details",
+        "get_order_details",
+        "return_delivered_order_items",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "return_delivered_order_items",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "modify_pending_order_items",
+        "modify_pending_order_address"
+      ],
+      "n_messages": 52,
+      "error": null
+    },
+    {
+      "task_id": 106,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "exchange_delivered_order_items"
+      ],
+      "n_messages": 28,
+      "error": null
+    },
+    {
+      "task_id": 107,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_email",
+        "find_user_id_by_email",
+        "get_user_details",
+        "transfer_to_human_agents"
+      ],
+      "n_messages": 24,
+      "error": null
+    },
+    {
+      "task_id": 108,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "exchange_delivered_order_items",
+        "exchange_delivered_order_items"
+      ],
+      "n_messages": 28,
+      "error": null
+    },
+    {
+      "task_id": 109,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "return_delivered_order_items"
+      ],
+      "n_messages": 28,
+      "error": null
+    },
+    {
+      "task_id": 110,
+      "success": true,
+      "reward": 1.0,
+      "actions": [
+        "find_user_id_by_email",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "modify_user_address",
+        "modify_pending_order_address",
+        "get_product_details",
+        "exchange_delivered_order_items",
+        "modify_pending_order_items"
+      ],
+      "n_messages": 34,
+      "error": null
+    },
+    {
+      "task_id": 111,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_email",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "modify_pending_order_address",
+        "modify_user_address",
+        "list_all_product_types",
+        "get_product_details",
+        "exchange_delivered_order_items",
+        "cancel_pending_order"
+      ],
+      "n_messages": 38,
+      "error": null
+    },
+    {
+      "task_id": 112,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "modify_user_address",
+        "modify_pending_order_address",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "modify_pending_order_items",
+        "get_product_details",
+        "exchange_delivered_order_items"
+      ],
+      "n_messages": 48,
+      "error": null
+    },
+    {
+      "task_id": 113,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "list_all_product_types",
+        "get_product_details",
+        "exchange_delivered_order_items",
+        "modify_pending_order_items"
+      ],
+      "n_messages": 38,
+      "error": null
+    },
+    {
+      "task_id": 114,
+      "success": false,
+      "reward": 0.0,
+      "actions": [
+        "find_user_id_by_name_zip",
+        "get_user_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "get_order_details",
+        "cancel_pending_order",
+        "cancel_pending_order"
+      ],
+      "n_messages": 24,
+      "error": null
+    }
+  ],
+  "wiki": "# Customer Service Agent Policy\n\nThis policy document serves as a guideline for customer service agents to ensure successful interactions with users across various workflows such as cancel, exchange, return, and modify orders. Follow these steps to provide efficient and effective customer service.\n\n## 1. User Authentication and Identification\n\n### Steps for Authentication:\n- **Primary Method:** Request the user's email address to authenticate their identity.\n- **Alternative Method:** If the user cannot provide an email address, request their first name, last name, and zip code.\n- **Action:** Use the provided information to locate the user's account in the system.\n\n### Tools:\n- `find_user_id_by_email({\"email\": \"<user_email>\"})`\n- `find_user_id_by_name_zip({\"first_name\": \"<first_name>\", \"last_name\": \"<last_name>\", \"zip\": \"<zip_code>\"})`\n\n### Error Handling:\n- If a user is not found using their email, switch to the alternative method using their name and zip code.\n- Communicate clearly and politely if there are issues finding the user account.\n\n## 2. Handling Different Workflows\n\n### 2.1 Cancel Orders\n- **Information Required:**\n  - Order ID(s)\n  - Reason for cancellation: \"no longer needed\" or \"ordered by mistake\"\n- **Process:**\n  - Verify the order status. Proceed if the order is \"pending.\"\n  - Confirm the cancellation details with the user.\n\n### 2.2 Exchange Orders\n- **Information Required:**\n  - Order ID\n  - Details of items to be exchanged\n  - New item options\n  - Payment method for price differences (if applicable)\n- **Process:**\n  - Verify the order status is \"delivered.\"\n  - Use `get_order_details({\"order_id\": \"<order_id>\"})` to gather comprehensive order information.\n  - Use `get_product_details({\"order_id\": \"<order_id>\"})` to verify the details of the items involved in the exchange.\n  - Ensure new items are of equivalent value or inform the user of any price differences.\n  - Confirm all details before proceeding with the exchange.\n  - Perform the `exchange_delivered_order_items` action only after all necessary information is gathered and confirmed.\n\n### 2.3 Return Orders\n- **Information Required:**\n  - Order ID\n  - List of items for return\n  - Refund method (credit card, gift card, etc.)\n- **Process:**\n  - Verify the order status is \"delivered.\"\n  - No reason for return is needed unless specified by the user.\n\n### 2.4 Modify Orders\n- **Information Required:**\n  - Order ID(s)\n  - Details of modifications\n- **Process:**\n  - Confirm what modifications are permissible based on order status.\n  - Use `get_order_details({\"order_id\": \"<order_id>\"})` to gather item details before modifications.\n  - Use `calculate({\"order_id\": \"<order_id>\", \"modifications\": \"<modifications>\"})` to ensure accurate adjustments.\n  - Confirm all changes with the user before proceeding.\n\n## 3. Information Gathering\n\n### Essential Information:\n- User identification details (email or name and zip code)\n- Order ID(s)\n- Specific item details (if applicable)\n- Reason for action (where applicable)\n- Payment/refund preferences\n\n### Tools:\n- `get_user_details({\"user_id\": \"<user_id>\"})`\n- `get_order_details({\"order_id\": \"<order_id>\"})`\n\n## 4. Communication with Users\n\n### Best Practices:\n- Be polite, clear, and empathetic.\n- Confirm user details and actions before proceeding.\n- Provide detailed information about order status and options available.\n- Clearly explain any necessary steps the user needs to follow.\n- Use simple language and avoid technical jargon.\n\n### Communication Structure:\n- Greet and offer assistance.\n- Request necessary information for authentication.\n- Confirm authentication and proceed with specific requests.\n- Explain the process and confirm actions before execution.\n\n## 5. Error Handling and Edge Cases\n\n### Common Scenarios:\n- **User Not Found:** Use alternative authentication methods and communicate the next steps to the user.\n- **Action Not Allowed:** Explain why an action cannot be completed (e.g., order status restrictions) and offer alternative solutions if possible.\n- **Technical Issues:** Apologize for any inconvenience and offer to follow up once the issue is resolved.\n\n### General Approach:\n- Always maintain a supportive and understanding tone.\n- Provide clear explanations and alternatives where possible.\n- Escalate issues to a supervisor or support team if unresolved.\n\nBy adhering to this policy, agents can ensure a consistent and positive experience for users across all interactions.",
+  "timestamp": "2025-12-31T10:51:22.754629"
+}
