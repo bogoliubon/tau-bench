@@ -656,3 +656,200 @@ Provide the complete organized policy document."""
     merged_policy = call_llm(MERGE_PROMPT, "gpt-5")
     
     return merged_policy
+
+def tool_name_to_description(tool_name: str) -> str:
+    """Convert tool name to human-readable description."""
+    return tool_name.replace("_", " ")
+
+
+def extract_ground_truth_actions(results_path: str, task_id: int, trial: int = 0) -> str:
+    """
+    Extract ground truth actions from the trajectory's info field.
+    
+    Args:
+        results_path: Path to results.json
+        task_id: Task ID
+        trial: Trial number
+        
+    Returns:
+        Formatted string of ground truth actions, or empty string if not found
+    """
+    with open(results_path, "r") as f:
+        data = json.load(f)
+    
+    # Find the trajectory
+    for result in data:
+        if result["task_id"] == task_id and result["trial"] == trial:
+            try:
+                actions = result["info"]["task"]["actions"]
+                if not actions:
+                    return ""
+                
+                # Format actions nicely
+                formatted_actions = []
+                for i, action in enumerate(actions, 1):
+                    name = action.get("name", "unknown_action")
+                    kwargs = action.get("kwargs", {})
+                    kwargs_str = json.dumps(kwargs, indent=2)
+                    formatted_actions.append(f"{i}. {name}({kwargs_str})")
+                
+                return "\n".join(formatted_actions)
+            except (KeyError, TypeError):
+                return ""
+    
+    return ""
+
+
+def prepare_trajectory_with_ground_truth(
+    results_path: str,
+    task_id: int,
+    trial: int,
+    include_instruction: bool = False
+) -> tuple[str, bool]:
+    """
+    Prepare trajectory text, adding ground truth for failed trajectories.
+    
+    Args:
+        results_path: Path to results.json
+        task_id: Task ID
+        trial: Trial number
+        include_instruction: Whether to include instruction
+        
+    Returns:
+        Tuple of (prepared_trajectory_text, is_success)
+    """
+    # Get conversation text
+    conversation = extract_conversation_text(
+        results_path,
+        task_id,
+        trial,
+        include_instruction=include_instruction
+    )
+    
+    if not conversation:
+        return "", False
+    
+    # Check if successful
+    with open(results_path, "r") as f:
+        data = json.load(f)
+    
+    is_success = False
+    for result in data:
+        if result["task_id"] == task_id and result["trial"] == trial:
+            is_success = (result.get("reward", 0.0) == 1.0)
+            break
+    
+    # For successful trajectories, return as-is
+    if is_success:
+        prepared = f"=== SUCCESSFUL TRAJECTORY ===\n\n{conversation}\n"
+        return prepared, True
+    
+    # For failed trajectories, add ground truth
+    ground_truth = extract_ground_truth_actions(results_path, task_id, trial)
+    
+    if ground_truth:
+        prepared = f"=== FAILED TRAJECTORY ===\n\n{conversation}\n\n"
+        prepared += f"--- GROUND TRUTH (What should have been done) ---\n{ground_truth}\n"
+    else:
+        prepared = f"=== FAILED TRAJECTORY ===\n\n{conversation}\n\n"
+        prepared += f"--- GROUND TRUTH NOT AVAILABLE ---\n"
+    
+    return prepared, False
+
+def tool_name_to_description(tool_name: str) -> str:
+    """Convert tool name to human-readable description."""
+    return tool_name.replace("_", " ")
+
+def extract_ground_truth_actions(results_path: str, task_id: int, trial: int = 0) -> str:
+    """
+    Extract ground truth actions from the trajectory's info field.
+    
+    Args:
+        results_path: Path to results.json
+        task_id: Task ID
+        trial: Trial number
+        
+    Returns:
+        Formatted string of ground truth actions, or empty string if not found
+    """
+    with open(results_path, "r") as f:
+        data = json.load(f)
+    
+    # Find the trajectory
+    for result in data:
+        if result["task_id"] == task_id and result["trial"] == trial:
+            try:
+                actions = result["info"]["task"]["actions"]
+                if not actions:
+                    return ""
+                
+                # Format actions nicely
+                formatted_actions = []
+                for i, action in enumerate(actions, 1):
+                    name = action.get("name", "unknown_action")
+                    kwargs = action.get("kwargs", {})
+                    kwargs_str = json.dumps(kwargs, indent=2)
+                    formatted_actions.append(f"{i}. {name}({kwargs_str})")
+                
+                return "\n".join(formatted_actions)
+            except (KeyError, TypeError):
+                return ""
+    
+    return ""
+
+
+def prepare_trajectory_with_ground_truth(
+    results_path: str,
+    task_id: int,
+    trial: int,
+    include_instruction: bool = False
+) -> tuple[str, bool]:
+    """
+    Prepare trajectory text, adding ground truth for failed trajectories.
+    
+    Args:
+        results_path: Path to results.json
+        task_id: Task ID
+        trial: Trial number
+        include_instruction: Whether to include instruction
+        
+    Returns:
+        Tuple of (prepared_trajectory_text, is_success)
+    """
+    # Get conversation text
+    conversation = extract_conversation_text(
+        results_path,
+        task_id,
+        trial,
+        include_instruction=include_instruction
+    )
+    
+    if not conversation:
+        return "", False
+    
+    # Check if successful
+    with open(results_path, "r") as f:
+        data = json.load(f)
+    
+    is_success = False
+    for result in data:
+        if result["task_id"] == task_id and result["trial"] == trial:
+            is_success = (result.get("reward", 0.0) == 1.0)
+            break
+    
+    # For successful trajectories, return as-is
+    if is_success:
+        prepared = f"=== SUCCESSFUL TRAJECTORY ===\n\n{conversation}\n"
+        return prepared, True
+    
+    # For failed trajectories, add ground truth
+    ground_truth = extract_ground_truth_actions(results_path, task_id, trial)
+    
+    if ground_truth:
+        prepared = f"=== FAILED TRAJECTORY ===\n\n{conversation}\n\n"
+        prepared += f"--- GROUND TRUTH (What should have been done) ---\n{ground_truth}\n"
+    else:
+        prepared = f"=== FAILED TRAJECTORY ===\n\n{conversation}\n\n"
+        prepared += f"--- GROUND TRUTH NOT AVAILABLE ---\n"
+    
+    return prepared, False
