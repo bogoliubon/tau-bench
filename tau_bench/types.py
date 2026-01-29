@@ -89,5 +89,6 @@ class RunConfig(BaseModel):
     user_strategy: str = "llm"
     few_shot_displays_path: Optional[str] = None
     wikipath: Optional[str] = None
+    policy_override_path: Optional[str] = None # added
     concatenate_from_model: Optional[str] = None
     summarize_from_model: Optional[str] = None

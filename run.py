@@ -1,4 +1,5 @@
 # Copyright Sierra
+from pathlib import Path # added for using inferred prompt
 
 import argparse
 from tau_bench.types import RunConfig
@@ -55,6 +56,8 @@ def parse_args() -> RunConfig:
         choices=["train", "test", "dev"],
         help="The split of tasks to run (only applies to the retail domain for now",
     )
+    
+
     parser.add_argument("--start-index", type=int, default=0)
     parser.add_argument("--end-index", type=int, default=-1, help="Run all tasks if -1")
     parser.add_argument("--task-ids", type=int, nargs="+", help="(Optional) run only the tasks with the given IDs")
@@ -75,8 +78,25 @@ def parse_args() -> RunConfig:
     parser.add_argument("--concatenate-from-model", type=str, help="Concatenate wiki from all results files matching this model name", default=None)
     parser.add_argument("--summarize-from-model", type=str, help="Summarize wiki from all results files matching this model name", default=None)
     
+    parser.add_argument(
+        "--policy-override-path",
+        type=str,
+        default=None,
+        help="Path to a text file containing a prompt-policy override. "
+         "This will be injected into the system prompt by tau_bench.run.run().",
+    )# added 
+
     args = parser.parse_args()
     print(args)
+    
+    # added
+    if args.policy_override_path is not None:
+        p = Path(args.policy_override_path)
+        if not p.exists():
+            raise SystemExit(f"--policy-override-path does not exist: {p}")
+        if not p.is_file():
+            raise SystemExit(f"--policy-override-path is not a file: {p}")
+     # 
     return RunConfig(
         model_provider=args.model_provider,
         user_model_provider=args.user_model_provider,
@@ -97,6 +117,7 @@ def parse_args() -> RunConfig:
         user_strategy=args.user_strategy,
         few_shot_displays_path=args.few_shot_displays_path,
         wikipath=args.wiki_path,
+        policy_override_path=args.policy_override_path,# added
         concatenate_from_model=args.concatenate_from_model,
         summarize_from_model=args.summarize_from_model,
     )
